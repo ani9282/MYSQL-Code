@@ -1,0 +1,240 @@
+
+
+
+	Good Afternoon 
+
+	OS  System--
+		2 types of instructions
+		2 types of kernels
+			monolithic = linux based OS
+			micro = mac Os, win
+
+
+BootStrapping--- load the kernel in the RAM  on power ON
+
+	bootstrapping program is present stored kept at a fixed location -- ROM ( BIOS ) 
+	Basis Input Output System
+
+Power ON ---- BIOS bootstrap program is loaded in the RAM 
+		automatically by way of a circuit
+
+	Main memory holds the bootstrap program
+	1. POST --- Power ON self TEST
+		find out which peripherals are connected
+	2. Boot loader is executed( GRUB loader )
+		this will load the kernel into the RAM 
+	3. Interrupt handlers are loaded and then other programs
+	4. Kernel takes control of the system
+
+------------------------------------------------
+Interrupt Management ----
+
+	Interrupt --- signal 
+
+	who is interrupted --- cpu pins
+	who is interrupting --- the IO devices and other h/w
+
+
+
+first the interrupt is understood ---- interrupt number
+for every interrupt there is handler code 
+	ISR = Interrupt Service Routine 
+	IH = Interrupt Handler
+
+	Data Structure --- IVT = Interrupt Vector Table
+Interrupt Table( mapping interrupt_no with Address of ISR)
+
+	interrupt_no |  function pointer to ISR
+
+
+when interrupt occurs the kernel finds the ISR from IVT and 
+	executes it
+
+2 types of interrupts ---
+	Maskable --- these can be ignored
+	NonMaskable  --- these can never be ignored
+
+________________________________________________
+
+	Process Management -----
+
+  Process --- program in execution
+	process is a logical / intangible entity
+
+
+program NOT in execution --- A  FILE 
+program in execution   --- A process
+
+program NOT in execution --- present on HDD
+program in execution   ---  RAM 
+
+program NOT in execution ---- DOES not have a lifecycle
+program in execution   ---has a life cycle
+
+
+One program file on hard disk 
+	MAY have 
+multiple instances of processes in RAM 
+
+____________________________________
+	Life cycle  has many PHASES/STATES 
+
+	Create State ---- Process is created
+	1. process ADDRESS SPACE is loaded in RAM by loader of 		kernel
+
+Every process has ITS EXCLUSIVE (belonging only to that process)
+ADDRESS SPACE ( it is made up of C,D,S,H)
+
+
+	2. PCB variable is created per process by Kernel
+		Process Control Block
+	
+	struct PCB
+	{
+		int pid;
+		char * curr_state;
+		int * location;
+		int priority;
+		Context * context;
+	}
+
+At process creation
+
+	struct PCB * pcb = (struct PCB) malloc(sizeof(struct PCB));
+	pcb->pid = get_next_unique_pid();
+	pcb->curr_state =...
+	...
+	...
+	
+Ready state ---------
+	the pcb variable is stored in a Queue data structure
+	this queue is called Ready Queue maintained by kernel 
+the process is ready to run BUT the resource (CPU ) is not free
+So the process waits for the CPU
+
+Execute/Running state  --------------
+	the pcb leaves the ready Q 
+	process starts using CPU
+	process leaves the CPU
+	a) if IO instruction occurs
+	b) interrupt occurs
+	c) if process completes
+
+
+
+IO WAIT STATE ---- the process waits here for IO to complete
+
+TERMINATE STATE --------   process is removed from RAM
+		free(pcb)
+________________________________________________
+
+Linux  based Kernels 
+	Flavors of linux
+Red Hat, fedora, ubuntu, BOSS, ankur, Mandrake, Mandriva,Debian
+
+..................
+
+Linux based kernels have GNU public license
+  can be used for any purpose
+
+
+Open source code---
+  can be modified
+_________________________________
+
+Linux based kernels are more towards CLI
+
+We will use the terminal 
+
+CLI module of Linux is called as SHELL program
+
+when the SHELL program runs we see the terminal
+	different shell programs 
+		bash --- default shell
+			Bourne Again Shell 
+		csh
+		tcsh
+		Ksh
+
+Every shell has a different SET of commands 
+
+
+we will study bash commands !!!
+	Ubuntu flavor , bash commands
+
+when we open the terminal shell is running
+	we see the PROMPT
+	we can type commands infront of the PROMPT
+
+
+ps --- process status 
+	shell is a process 
+	every command you run is a process
+
+ps  --- shows processes in current terminal only
+ps -e  ---------shows process in entire system
+
+processes may run either in foreground or in background
+
+  fg --- the process will block the prompt till it is running
+  bg --- the process will run but it will release the prompt
+
+
+how to create a process in bg
+	./infy &
+
+how to see its state 
+	jobs
+
+how to get a bg process in fg
+	fg job-number
+
+
+how to suspend/stop a process
+	ctrl z
+
+
+how to terminate a process in bg
+	find its pid using ps
+	use kill pid
+
+how to terminate a process in fg
+	ctrl c in same terminal
+	or go to another terminal and use kill
+
+how to resume a stopped process in bg 
+	bg job-number
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+				
+
+
+
+
+
+
+
+
+
+
+
+
+
+

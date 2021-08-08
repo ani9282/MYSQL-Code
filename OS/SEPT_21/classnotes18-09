@@ -1,0 +1,165 @@
+
+
+	Good Morning :)
+
+
+ exec -- family of system calls
+
+	execl
+	execlp
+	execv
+	execvp
+
+	// it is applicable only to languages that accept 
+		3 args in main
+	execlpe
+	execvpe
+
+We can run a process using exec.
+The process takes control of the calling process on same pid
+
+
+***
+	write a c program that will show the contents of the current folder( execute the ls command ).
+
+
+***
+   write a c program to run sample ( a.out )  from testexec.c
+
+
+
+	execl --- gets ellipses argument
+	execv --- gets a vector/array argument
+
+
+	printf("",x,y,z,t,r,e,w,s,d,f,g);
+
+	void main()
+	{
+		int result;
+
+		result = add(23,34 );
+		printf("%d",result);
+	}
+
+
+	//define
+	int add(int a , ...)
+	{
+		return a+b;
+	}
+
+
+	//definition
+	void printf(char [] str, int a,...);
+
+
+	execvp( "cmd string",array of entire cmd line)
+	execlp ("cmd string", list of entire cmd line )
+
+	
+	execl
+	execv 
+
+
+	PATH !!!!!
+	
+	Environment variable 
+		name=value
+	this variable has a system-wide scope 
+		many processes of user and kernel 
+			use environment variable
+
+	To see the value of a variable in linux
+		echo "$varname"
+
+	env command to see the list of environment variables
+
+	PATH environment variable has a list of 
+		folder names separated by  :
+
+	To change the value of the environment variable
+		use export varname=newvalue
+
+
+
+	execl , execv--- the location of the command/program must be given 
+			in the arguments
+
+	execlp,execvp --the location of the command/program will be searched in the PATH environment variable
+
+
+
+___________________________________________________	
+	programs written with folowing main---
+
+	void main(int argc, char *argv[] , env)
+	
+	are required for execvpe/execlpe	
+___________________________________________________
+
+	Process Management ---- Thread Management
+
+	Process --- Program IN Execution
+
+	Thread ---- Path of execution within a process
+
+	Path of execution ==== THREAD
+
+		-- start point of execution main(){
+
+		}  intermediate points of execution 
+			statements 
+			function calls
+
+		end point of execution }//end of main
+
+
+	EVERY process MUST have a THREAD
+		Default thread of a process is called as 
+			MAIN THREAD 
+
+	If you have only MAIN thread in your process
+		SINGLE THREADED PROCESS
+
+	We can have many threads in a process.
+		WHY ? to do jobs parallely/simultaneously/at-a-time
+			within a process
+
+
+
+		HOW ?
+		  in linux we use the pthread library 
+		POSIX thread library .
+
+
+	Some points --
+	1. Each thread has a Lifecycle same as process life cycle
+	2. Each thread gets a unique TCB  and tid within a process
+	3. when you a create a process 
+		you load entire address space(C,D,S,H) in RAM
+
+	   when you create a new thread it will 
+		share the Code, Data and Heap with other threads
+		ONLY a new stack is created for each thread
+		hence threads are called as LIGHT WEIGHT PROCESS
+			
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

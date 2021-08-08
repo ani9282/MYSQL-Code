@@ -1,0 +1,386 @@
+
+
+	Good Morning :))
+
+Deadlocks ---
+	
+condition when "Process waits INDEFINITELY for IO resources ".
+4 neccesary conditions MUST Occur so that deadlock happens
+
+	a. Mutual Exclusion -- the io resource may be mutually exclusive -it may cause deadlock
+
+	b. Hold and Wait --- one process holds a resource and waits for another.
+
+	c. No preemption  -- kernel is non preemptive and it does not FORCEFULLY take away resource from process
+
+
+	d. Circular Wait --- P1 waits for P2 to release resource
+		p2 waits for P3 to release a resource
+		P3 waits for P1 to release a resource
+		
+
+Kernel uses a GRAPH data structure to keep track of the resources allocated to the processes
+
+	RAG = resource allocation graph 
+
+	Cycle in the RAG - there MAY be a deadlock
+
+
+How is deadlock handled ?
+	1. Deadlock Prevention    ( PRE deadlock ) 
+		Dont let all 4 conditions occur
+		 break any 1 
+
+	break mutual exclusion --- have more copies of the resource
+
+	break hold and wait --- by implementing algo that dont allocate resource if process waits for a long time holding one
+
+	break no-preemption --- by having preemptive kernel
+
+	break circular wait --- algorithms to check if cycles may get formed if so - dont allocate
+
+
+		Deadlock Avoidance
+	Banking/Banker's Algorithm is used for allocation 
+		always KEEP system in safe state
+
+	accept those requests that will NOT make UNSAFE system
+	reject those request that will make UNSAFE system
+
+
+	2. Deadlock Handling  ( POST deadlock )
+
+		1. detect deadlock
+		2. Kill a process with lowest priority in the RAG cycle. The resources held by the process will be released
+		allocate these to some waiting processes
+		so that they will run and finish and release resources.
+
+		3. repeat the activity till deadlock is solved
+
+	3. Ignore
+
+
+difference between deadlock and starvation
+	1. starvation occurs due to some priority
+		low priority process MAY suffer starvation
+
+	  deadlock occurs due to 4 necessary conditions
+
+
+	2. starvation may be solved by increasing the priority of process- promotion
+	
+	deadlock can be solved by prevention/avoidance/handling
+
+
+	3. Similarity - in both cases process waits indefinitely
+
+	4. starvation is not represented/detected by RAG
+		deadlock is detected from RAG
+
+____________________________________________________
+
+Linux commands 
+	File Handling commands 
+	cd 
+	mkdir
+	touch
+	vi 
+	gedit
+	pwd
+		rm -- remove fiel
+		rm -r -- remove non-empty folder
+		rmdir --- remove empty folder
+	
+	ls -l
+		long listing --details for files and folders
+		ls -R --- recursive contents of all subfolders
+		ls -a --- show all files including hidden files
+		ls -s 
+
+			hidden files are  .somename
+	cat / tac
+
+	cp source  destination  
+	mv source destination 
+		cut paste
+		Rename
+
+_______________________________
+	
+	Zombie process , Orphan process
+
+	
+	fork 
+	   parent ---child
+
+	parent process is running 
+		and child has terminated
+			the Pid is not immediately removed
+			the  pid gets removed after
+				the parent process calls a 
+					system call waitpid()
+
+	Orphan process
+		parent process is terminated before child processes
+		  
+
+	top --real time view of system
+______________________________________________________
+ 
+file permissions
+
+		rwx  =  for owner(user) of file
+		rwx  =  all the users in the group of owner
+		rwx  = all other users
+
+	r = read, w = write, x= execute
+
+	file --- readonly  --- I cannot edit file in editor
+
+	     rw  ---
+
+	chmod ugo+rwx filename/folder
+	chmod ugo-rwx filename/folder
+	chmod ugo=rwx filename/folder
+	chmod 666 file/folder
+
+	rwx
+	---
+	000 0
+	001 1
+	010 2
+	011 3
+	100 4
+	101 5
+	110 6
+	111 7
+
+
+MEMORY Management -----
+	memory -- RAM - volatile
+	Primary memory, main memory
+
+	Physical address, logical address, offset address
+	base address, actual address
+	
+
+	Program that selects a process to be loaded in RAM 
+	is called as Long Term Schedular (LTS )
+
+
+actual adddress of Instr/data in RAM = base-address of process 
+					+ 
+			offset-address of instr/data in process
+______________________________________________
+	
+	Basic Technique
+
+variable partition -- number of partitions keep changing
+			  size partitions also change as processes 				are created and terminated
+
+
+Disadvantage --- EXTERNAL FRAGMENTATION ---- if there is a free space of 3 + 2 nonconsecutive free holes
+a process wants 4 -- but space cannot be allocated as space is non consecutive
+
+
+fixed partition  --  at boot time RAM is LOGICALLY divided
+		into fixed size and fixed number of partitions
+		called as FRAMES 
+
+
+	Allocation to process is done in terms of FRAMES 
+
+	3 byte process will get 2 Frames
+	5 byte proces will get 3 Frames
+
+	Disadvantage --- INTERNAL FRAGMENTATION --- space internal to the frame may get wasted if process size is NOT exact multiple of FRAME size
+
+	External Fragmentation May occur if free frames are not consecutive .
+
+___________________________________________
+
+No solution for Internal Fragmentation
+
+Solutions for External Fragmentation 
+	1. theoretical solution --- COMPACTION
+		shift all free spaces to one end
+
+	2. Remove the Requirement of CONSECUTIVE MEMORY 
+		PAGING 
+		SEGMENTATION
+
+
+How to split the process ?
+How to keep track of process parts at different locations?
+
+
+Paging --- based on fixed partition scheme - FRAME 
+	RAM --- divided into FRAMES
+How to split the process ?
+	split process into equal size parts called as PAGES 
+		page size = frame size
+
+allocate a page to any free frame !!!( it may be non consecutive)
+
+
+How to keep track of process parts at different locations?
+	kernel maintains a data structure---PAGE TABLE 
+		page-num | frame-num 
+		  0		3
+		  1		5
+		  2             11
+		  3             9
+
+
+Segmentation ----based on variable partition scheme 
+
+How to split the process ?
+	the process is split on the basis of content 
+	Each part is called as a segment 
+		unequal size segments
+
+How to keep track of process parts at different locations?
+	Segment Table 
+	seg-num | seg_base_address | seg-length 
+	  0           4			6
+	  1           15                10
+	  2           34                12
+	  3           90		2
+
+
+
+Advantages PAGING 
+	1. EXTERNAL fragmentation is totally removed
+
+Disadvantage PAGING
+	1. Internal fragmentation
+	2. Page tables are very long --- overhead of page table management ----- extra cache is used, page tables are stored partially on hard disk
+
+	
+
+Advantages Segmentation 
+	1. NO internal fragmentation
+	2. External fragmentation is REDUCED
+		one segment MUST be at consecutive locations 
+		if this is not found external fragmentation 
+		may occur. segments are not further divided.
+	3. Segment tables are short and easy to manage 
+
+
+Disadvantages Segmentation
+	1. External fragmentation may occur sometimes
+	
+-------------------------------------------------
+
+PAged Segmentation --- 
+	Process is first divided into Segments
+		segment is divided into pages
+_________________________________________
+Page tables/ segment tables per process!!!
+____________________________________________
+
+
+
+
+Remove the requirement tha entire process should loaded in RAM 
+
+Akhir kyu?
+	
+1.  LArge codes larger than RAM cannot be executed if entire process is loaded
+
+2. entire process is never user totally but loader has to spend efforts loading everything
+
+3. Degree of multiprogramming reduces if full process in in RAM 
+	how many processes are in RAM at a time ---Deg of multiprogramming--- user will have restrictions on how many progs can be started at a time.
+
+
+
+
+PArt of the process ( 10 percent pages will be in the RAM )
+	process has 50 pages  ( 5 pages will be in the RAM)
+
+	REmaining 45 are kept on the hard disk( virtual memory )
+the place on hard disk where the 45 pages are kept 
+	is called as SWAP SPACE
+
+
+if a page is required and not present in RAM 
+		an interrupt occurs --- PAGE  FAULT  interrupt
+
+PROGRAM demands the page that is not in RAM --- PAGE FAULT 
+kernel loads the page in the RAM --- DEMAND PAGING
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	

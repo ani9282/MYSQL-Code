@@ -1,0 +1,241 @@
+
+
+	
+
+
+
+		Good Morning :)
+
+	Should we start ????
+
+	what is the return value of fork ?
+	
+	parent gets child pid
+	child gets 0
+
+___________________________________
+	
+	DMA controller, IR,PC, Accumulator
+	Context, Context Switching
+	
+	Starvation 
+	Preemption
+	MultiUser OS 
+	RTOS 
+	Deadline
+	Multitasking
+	CPU burst time
+	wait time
+	average turnaround time
+	response time
+
+	ps 
+	ps -e
+	jobs
+	fg 
+	./infy &
+	
+	kill
+	export var=value
+	echo "$var"
+	env
+
+	fork
+	child process
+	parent process
+
+	IVT
+	ISR
+
+	DRO,DR1
+
+	L1 cache
+
+	BIOS
+	POST
+	GRUBLOADER
+
+	Monolithic kernel
+	microkernel
+
+
+	Thread
+____________________________________________
+
+
+	Thread = path of execution within a process
+
+	Thread has a life cycle
+	Default thread in a process --- main thread 
+
+	every process must have atleast one thread 
+
+	when a thread is created --- 
+		address space is not loaded like process creation 
+		it shares the code,data and heap segments of default
+		thread BUT it keeps its local data separately
+		in a NEW STACK 
+
+
+How to create a thread within a process ?
+	pthread_t 
+	pthread_create()
+	pthread_self()
+	sleep()
+	pthread_join()
+		this function blocks the calling thread
+			till the argument thread is not finished
+		when the argument thread completes
+			the calling thread is UNBLOCKED
+				and it can go to next instr.
+
+_____________________________________________________________
+
+SHELL Commands ----
+
+	we can execute them in 2 ways ---
+	1. give the command on the PROMPT
+	2. write the commands in a file and run the file
+		SHELL SCRIPT 
+	3. run the command through C program ( exec )
+
+File Handling Commands --------------
+	File System, File , Directory related commands
+
+	File System --- is a way to organize and store and retrieve
+			files on the PARTITION 
+
+	FAT32 , NTFS 
+	Linux  --- EXT2FS /EXT3FS
+	Find out FS on google !!!
+
+	Format a partition ---- install the LAYOUT of the FS 
+
+
+	Linux has only one topmost folder in its FS 
+			/  
+
+
+	windows FS you have many topmost folders - c:,d:,e: 
+
+
+	cd -- change dir
+	pwd -- present working dir ( current folder) 
+
+	/home  folder will have
+		subfolder per user having same name as username
+
+	when you open your terminal you are in ~ ( tilde )
+
+	~ = /home/iet  = it is the user's folder in /home
+
+
+	. = current folder
+	.. = previous/parent folder
+
+	vi filename  will open the vi editor and the file
+	vi editor - command line editor -- it opens in terminal
+
+	initially editor is in command mode
+	 we have to switch to input mode by "press i "
+	switch to command mode using "esc"
+	to save  type  " :w " 
+	to save and quit type  " :wq "
+	to quit without saving type " !q "
+	to just quit  type  " q " ( when no changes are made )
+
+
+	to see the contents of any file
+	cat filename
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,314 @@
+
+
+
+	Good Morning :)
+
+	How is actual address calculated?
+
+	Simple Variable partition 
+consecutive locations and full process is loaded in RAM
+
+
+	actual address of I1 = base + offset
+				5 +2 = 7
+
+
+
+	Simple Fixed Partition --- consecutive frames full process is loaded in RAM
+
+actual address = Base_address_of_base_frame  + offset
+
+
+
+
+	Paging --- fixed partitions + non consecutive frames + full process in RAM 
+
+	Page table of Process
+		Page No  |  Frame No 
+		  0		2
+		  1             4
+		  2             6
+		  
+
+Actual address of In 
+
+	PC --- Page 1 +| offset 2
+
+	take the page number from PC
+	refer page table to find frame number
+
+actual address of In = base_addr_of_frame_number  +  page offset
+
+
+Segmentation --- variable partition - non consecutive + full process in RAM 
+		Segment table
+	segment_number |  seg_base_address | seg_length
+		0		12		9
+		1		34		7
+		2		45		10
+
+
+PC --- seg 1 offset 6
+
+actual address of In
+
+	take the seg number
+	refer the segment table to find the seg_base_addr
+
+	actual address = seg_base_addr + segment offset
+				
+
+Demand paging --- if process has 50 pages and 5 are in the RAM
+		45 in swap space 
+
+	what will be the size of page table ---- 5
+
+	when PC address = page 32 offset 6 
+		kernel checks the page table for page 32 entry
+		when not found it raised page fault interrupt
+
+	the process leaves the running state and go to wait state
+		ISR of page fault interrupt runs on cpu
+			1. load the page 32 in a free frame 
+			2. update the page table
+			3. move the FAULTING process to ready state
+
+	
+	WHAT If no free frame is available?
+		REPLACE an existing page with the demanded page
+		PAGE replacement !!!
+
+Page replacement policies ---
+	1. Global page replacement
+		any page of any process can be replaced
+		
+		This leads to a problem called THRASHING
+			end user gets a feeling that system is hanged . because due to one process many processes start faulting
+	
+	
+	2. Local page replacement
+		another page of the FAULTING process is replaced
+
+Kernel will use page replacement algorithms to decide which page of the process should be replaced.
+
+	FIFO  --- the page with earliest loading timestamp is replaced .
+
+	OPT --optimum page replacement algorithm --- replace that page which is not required in future . IDEAL /Theorotical 
+
+	2 practical implementations of OPT 
+		1. LRU -- the page that is not used for a long time
+			is replaced
+
+		2. MRU  -- the page that is recently used is 			replaced
+
+Page access string ----  1,2,3,1,3,5,2,4 } sequence in which pages are accessed in a process during execution
+
+	if FIFO is used - how many page replacements and page faults will occur if 3 FRAMES are allocated to the process.
+
+F1 F2 F3
+1          } page fault
+1  2		} pf
+1  2   3   } pf
+
+5  2  3  } pf pR
+
+5  4  3 } pf PR
+
+___________________________________
+using LRU  1,2,3,1,3,5,2,4
+F1 F2 F3
+1  2  3 }  3 pf    LRU ---1
+		   LRU ---2
+
+1  5  3 }   1 pf  1 PR    LRU ---1
+
+2  5   3 }   1pf 1 pR    LRU --- 3
+
+2  5   4  }  1pf 1pR   LRU --- 5
+
+_________________________________________
+using MRU  1,2,3,1,3,5,2,4
+F1 F2 F3
+1  2  3 }  3 pf   MRU  ---3
+		   MRU ---1
+		   MRU ---3
+
+1 2 5 } 1pf 1 PR  MRU ---5
+	  	 MRU --2
+
+1 4 5 } 1 pf 1 pR MRU --4
+
+______________________________________
+
+	Pipe and redirection
+
+
+default ouput destination ---- console
+redirection ---- redirect output to another destination
+
+	>   overwrite the destination
+	>>  append to the destination
+
+____________
+
+	Text manipulation commands 
+ 
+head   topmost lines of a file
+
+tail  bottommost lines of a file
+
+wc  word count 
+	wc -l players
+	wc -w
+	wc -c
+
+
+sort  to sort by columns 
+	sort is sorting by alphabet
+		lexicographical sort
+
+	sort players
+	sort -n players
+	sort -n -r players
+	sort -k 3 players
+	sort -k 3 -r players
+
+
+
+  PIPE ---  IPC 
+	p1 |   p2 | p3 |p4
+
+	p1, p2.... are processes --- commands  
+
+	chaining commands using pipe 
+
+
+
+	redirection -- we redirect output to a file
+	Pipe - we send output as input to another command
+
+
+ grep ---used to search an expression/searchstr  in the given file or files
+
+	grep "echo" odd.sh
+	grep "echo" * 
+	grep "echo" ifex.sh odd.sh
+
+	grep -i "v" players
+	grep -v -i "v" players
+
+	grep "^10" players
+	grep "r$" players
+
+	grep - i "r$" players
+
+	grep "[2-5]" players
+_______________________________
+
+	cut -c char-index
+
+	rev
+_____________________________
+
+tr 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

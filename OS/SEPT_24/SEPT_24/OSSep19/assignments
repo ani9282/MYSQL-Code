@@ -1,0 +1,168 @@
+1. HDD life
+2. other types of registers 
+3. example of microkernel and monolithic kernel 
+	examples of different types of OSs
+
+4. find out examples of Maskable and non maskable interrupts
+
+5. observe the prompt
+6. ps, kill, ps -e, ps -e -o pid,ppid,cmd
+	write your own infy.c
+7. jobs , fg, bg, & , ctrl-z, ctrlc 
+
+8. read multiuser os and RTOS 
+
+9. Write a program that will fork 2 child processes
+	one child will print fibonacci series 
+	1
+	1 1
+	1 1 2
+	1 1 2 3
+
+	second child will accept a number from user and show its factorial in an infinite loop 
+
+10. Write a multithreaded application that creates 3 threads
+	thread 1 - accepts 2 nos and print their product
+			5 times
+		print the thread id of thread1
+
+	thread 2 - prints the current time after every 2 secs
+			print the thread id of thread2
+				5 times
+
+	thread 3 -  accepts a number from user and prints its math table after every 3 sec ( 5 times )
+		print the thread id of thread 3
+
+	main waits till all the threads are completed
+	and in the end prints its thread id and says goodbye
+
+11. cd to topmost folder
+	pwd, ls 
+	google 
+	bin, etc, usr, home } what are the contents 
+
+12. find out the ~ folder name on your machine ( pwd) 
+
+13. pwd = ~
+	create a folder planets
+			  --- earth
+				 --moon
+				      mooninfo } file
+				      mooninfo234 } file
+			  --- mars
+
+	remove the mooninfo234
+ ( ls foldername , touch , rm , mkdir, cat )
+
+	go to mars (pwd )folder and see the contents of 
+		a) ~ folder
+		b) /home folder
+		c) planets folder
+
+	from mars see the contents of moon folder
+
+
+_______________________________
+
+23-Sep
+
+1. tryout all commands of filehandling  on the prompt
+	cd,mkdir, rm, rmdir, rm-r, ls, ls -l, ls-a, ls-R,ls-s, pwd
+	cat, tac, cp, mv   , chmod
+
+2. WASS and give options to user
+		1  show contents of folder
+		2. show all hidden files
+		3. show all contents of subfolders
+		4. show file in reverse
+		5. delete a file
+		6. quit
+		
+24- Sep- 2019
+
+1.	write a shell script that will accept number and name of players from user and add them to a file called as players
+
+2. write a shell script to accept many numbers from user till user enters -1 and show all the numbers in ascending order
+
+2a . show maximum number
+2b. show minimum number
+2c. show 3 largest number
+2d. show 3 smallest number
+2e. show how many numbers are present in the file 
+
+3. WASS that will accept names from user ( use loop -- terminate when user enter "quit"  
+	show a menu to the user ( in loop )
+	1  show names in insertion order
+	2. show names in ascending order
+	3. show names in descending order
+	4. exit 
+
+
+4. WASS that will ask a filename from user and show it without blank lines  . also show total lines in the file
+		show number blank lines and number of non blank lines
+
+5. WASS that will show the pid and cpu usage of the process that uses highest cpu
+
+6. WASS that will accept a string from user and show it vertically
+		hello
+
+	h
+	e
+	l
+	l
+	o
+
+7. WASS to accept two strings from user - concatenate them and show their total length
+
+8. WASS to accept a string from user and tell whether it is a palindrome ( use rev command )
+
+9. WASS to accept a string from user and show the string in uppercase as well as lowercase ( user may enter in mixed case )
+	9a . remove all the numbers from the string
+	9b. remove all the vowels from the string
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

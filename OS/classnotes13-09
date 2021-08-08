@@ -1,0 +1,205 @@
+
+
+
+
+	
+	Good Afternoon :)   
+
+	LLL ,HLL --- 
+	why do we need programming language ?
+		to get our work done
+			we want to give instructions to the h/w
+
+	for instructions we need a language 
+	using the language we write a set of instructions
+
+	set of instructions  ---Program
+	set of programs ---- software 
+		
+	software is of two types ---
+	1. system software 
+		s/w that manages, interacts with the system 
+		OS , loader, linker, compiler, assembler, 			interpreter, device drivers  
+
+	2. application software
+		s/w that solves the end users's problems 
+	MS-office, chrome, media players,games, add.c, factorial.c
+
+
+
+	Operating System --
+		It is a system software . 
+		It acts as an interface between ---
+		a) end user and system ( using GUI, CLI )
+		b) application software & system ( system calls)
+
+	It manages different system activities --
+	like ---
+	1. process management 
+	2. memory management
+	3. device management(IO management )
+	4. security
+
+___________________________________________________
+
+	SYSTEM   ---- 
+
+	HDD - storage --- permananent storage 
+	what is HDD made up of ? 
+	size ? 100GB to 10TB
+
+	RAM  - storage --- volatile storage ( stores till power on )
+	What is RAM made up of ?
+	size ? 4GB to 16GB
+	Access Speed --- RW to that device is fast as compared to 		HDD. 
+
+
+	CPU --storage + executor
+
+	storage --- REGISTERS 
+	size ? 32 bit ( 4 bytes )
+		64 bit ( 8 bytes )
+	Very high access speed as compared to RAM 
+
+	IR = instruction register -- stores the current instruction
+	at a time only one instruction is kept here
+
+	PC = Program counter --- stores the address of the next instruction.( offset  address )
+
+	DR0, DR1 = data registers --- stores the operands
+	at a time one register can hold one data
+
+
+	Accumulator --- stores the result of the operation/	  							instruction
+
+
+	SP ,ADR etc are other registers 
+
+
+-----------------------------
+	Executor of CPU --- ALU -- arithmetic and logic unit 
+
+	ALU -- circuit created using VLSI 
+	arithmetic =  +,-,*,/,%
+	logic = && ,||, !
+	relational  = < ,> !=,<=,>=,==
+
+----------------------------------------------
+
+Two types of instructions ?????
+	
+	1. CPU instructions --- ALU executes them 
+	2. IO instructions --- IO processor/DMA controller 
+
+________________________________
+
+	HDD ---->RAM --->Registers 
+				
+Registers can hold instructions, data , address of instruction, address of data 
+GPRs --- General purpose registers
+___________________________________________
+
+IO devices 
+
+	Input Device ------data------>RAM
+
+	Output Device <--------data ----RAM 
+
+
+Input devices --- keyboard, mouse, scanner, joystick,touchpad,
+		webcam, mic, barcode reader , card reader, 
+		pen drive, retina scanner, thumb reader 
+
+output devices --- monitor, printer, projector, plotter
+		speaker 
+
+
+____________________________________________________________
+
+
+KERNEL = OS 
+
+two types of kernels ---
+	1. monolithic kernel -- not modular
+		single process kernel 
+		if there is a problem in any function
+			then the kernel will crash
+
+	2. microkernel ---- modular 
+		many small processes make one kernel 
+		if any part fails the OS is still working
+
+________________________________________
+  Different purposes we have different OSs
+	GPOS = General Purpose OS - windows, ubuntu
+	RTOS = real time OS
+	Network OS 
+	Server OS 
+	
+----------------------------------------------------
+
+  BootStrapping  --- booting 
+
+--- Initialize the OS after power ON 
+
+--- from some fixed location we have to load the kernel in the RAM
+	------ ROM
+	------ EEPROM 
+	------ MBR --- Master Boot Record -- boot sector of hard 
+			disk --- 0th sector of HDD
+
+____________________________________________________
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,83 @@
+1. HDD life
+2. other types of registers 
+3. example of microkernel and monolithic kernel 
+	examples of different types of OSs
+
+4. find out examples of Maskable and non maskable interrupts
+
+5. observe the prompt
+6. ps, kill, ps -e, ps -e -o pid,ppid,cmd
+	write your own infy.c
+7. jobs , fg, bg, & , ctrl-z, ctrlc 
+
+8. read multiuser os and RTOS 
+
+9. Write a program that will fork 2 child processes
+	one child will print fibonacci series 
+	1
+	1 1
+	1 1 2
+	1 1 2 3
+
+	second child will accept a number from user and show its factorial in an infinite loop 
+
+10. Write a multithreaded application that creates 3 threads
+	thread 1 - accepts 2 nos and print their product
+			5 times
+		print the thread id of thread1
+
+	thread 2 - prints the current time after every 2 secs
+			print the thread id of thread2
+				5 times
+
+	thread 3 -  accepts a number from user and prints its math table after every 3 sec ( 5 times )
+		print the thread id of thread 3
+
+	main waits till all the threads are completed
+	and in the end prints its thread id and says goodbye
+
+11. cd to topmost folder
+	pwd, ls 
+	google 
+	bin, etc, usr, home } what are the contents 
+
+12. find out the ~ folder name on your machine ( pwd) 
+
+13. pwd = ~
+	create a folder planets
+			  --- earth
+				 --moon
+				      mooninfo } file
+				      mooninfo234 } file
+			  --- mars
+
+	remove the mooninfo234
+ ( ls foldername , touch , rm , mkdir, cat )
+
+	go to mars (pwd )folder and see the contents of 
+		a) ~ folder
+		b) /home folder
+		c) planets folder
+
+	from mars see the contents of moon folder
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

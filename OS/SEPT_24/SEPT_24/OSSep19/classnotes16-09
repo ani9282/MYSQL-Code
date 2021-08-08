@@ -1,0 +1,304 @@
+
+
+     Good Morning :)
+
+	RAM --- 2 parts 
+	Kernel space
+
+	IVT, PCB, Ready Q 
+ 
+	User space
+
+		Address-space1
+
+
+
+
+_______________________________________
+		Address-space2
+	
+Job Control --- fg, bg, ctrl-z, jobs
+_______________________________________________
+
+
+Process Scheduling --
+	allocate a ready process from ready Q to the cpu
+which process should be selected from ready Q ??
+	depend on the CRITERIA---plural(--- Criterion --- singular)
+
+Kernel module that implements process scheduling -----
+	Schedular
+	CPU Schedular
+	Low Level Shcedular
+	Short Term Schedular
+
+
+Some Factors  to be considered while implementing a schedular ----
+	
+1. CPU burst time ( Tcpu) --- total time required to complete all the CPU instructions in a process 
+
+2. IO burst time --- total time required to complete all the IO instructions in a process ( IS NEVER CONSIDERED by SCHEDULAR ) 
+
+3. Average Wait Time (avg Tw)
+	(Tw1 + Tw2 + T3)/3
+ Tw = total time spent by the process WAITING in the ready queue.
+	GOOD Tw should be as less as possible
+
+4. Average Turnaround Time ( avg Ta ) 
+	( Ta1 + Ta2 + Ta3)/3
+ Ta = total time required for the process to complete its life cycle. From created to Terminate .
+
+	Ta = Tw + Tcpu
+	Ta = end_time  - start_time
+
+unit = ms 
+Good Ta should be LESS 
+
+5. Throughput 
+	number of processes completed in unit time 
+
+ unit - processes/unit-time
+Good Throughput should be HIGH
+
+
+6. Response Time 
+	time required for the process to respond to the end-user
+
+unit - sec
+Good Response Time LOW 
+
+Schedular will try to IMPROVE the above factors !!!
+What are the different ways to select a process ? 
+
+Commonly used basic techniques --- SCHEDULING ALGORITHMS 
+
+1. FCFS
+	How to select a process for CPU ?
+	the process @ front of ready Q is selected
+
+	How long does a process get the CPU ideally ?
+		till process completes
+
+	Adv ?
+	1. simple
+	2. No Starvation 
+
+	Disadv ?
+	1. IF process with small Tcpu waits after 
+		process with high Tcpu
+		Tw of small process is high
+		Avg Tw is high ( bad)
+		Avg Ta increases ( bad )
+		Throughput decreases( bad )
+
+
+
+	Process		Tcpu        Arrivaltime
+	 P1		4		2
+	 P2             3		0
+	 P3             2	        1
+
+calculate Avg Ta, Avg Tw  using FCFS
+
+
+	Tw1 = start-arrival = ( 5-2) = 3ms
+	Tw2 = 0 -0 = 0ms
+	Tw3 = 3 -1 = 2 ms
+
+	Avt Tw = (3+0+2)/3
+
+	Ta = Tw + Tcpu
+	Ta1= 3 + 4 = 7
+	Ta2 = 0 + 3 = 3
+	Ta3 = 2 + 2 = 4
+
+	Avg Ta = (7+3+4)/3
+
+
+2. SJF  -- shortest job first
+
+	How to select a process for CPU ?
+	the process @ shortest Tcpu  in ready Q is selected
+
+	How long does a process get the CPU ideally ?
+		till process completes
+
+	Adv ?
+	1.  Average Tw will be reduced (good) as small Tcpu process 			run first
+		Average Ta will reduced ( good )
+		Throughput will increase( good )
+	2.
+
+	Disadv ?
+	1. It is IMPRACTICAL / HYPOTHETICAL - Tcpu cannot be 			predicted 
+	2. STARVATION of large Tcpu process
+
+
+	Process		Tcpu        Arrivaltime
+	 P1		2		2
+	 P2             3		0
+	 P3             4	        1
+
+calculate Avg Ta, Avg Tw  using SJF 
+	Tw1 = 1
+	Tw2 = 0
+	Tw3 = 4	
+
+3. PRIORITY
+
+	How to select a process for CPU ?
+	the process @ highest priority  in ready Q is selected
+
+	How long does a process get the CPU ideally ?
+		till process completes
+
+
+	How is the priority decided ? 
+	1. whether it is a kernel process or a user process
+	2. programmer has set a priority using system calls
+	3. MULTIUSER OS  -- which user's process is running
+
+	Preemptive Priority  -- a new higher prio process
+	will forcefully remove the lower prio process from the CPU
+
+	NonPreemptive Priority -- a new higher process will WAIT for current process to finish and then use the cpu .
+
+	Adv ?
+	1.  Priority is considered - important process gets first 			chance.
+	2.
+
+	Disadv ?
+	1. 
+	2. STARVATION of low priority process
+
+
+	Process		Tcpu        Arrivaltime   Priority
+	 P1		2		2	    6   
+	 P2             3		0	    5
+	 P3             4	        1	    4
+
+calculate avg Ta and Tw using PREEMPTIVE Priority 
+Assume 1 is lowest prio and 10 is highest
+
+
+	Tw1 = start - arrival (2-2 ) = 0
+	Tw2 = (0-0) + ( resume - pe )
+		0 + (4 - 2) = 2
+
+	Tw3 = ( 5 -1) =4
+---------------------------------------
+
+4. ROUND ROBIN
+
+	How to select a process for CPU ?
+	the process @ front in ready Q is selected
+
+	How long does a process get the CPU ideally ?
+		for the given time period( time slice ) 
+
+	every process gets a time slice 
+		uses the CPU for that time slice
+			returns to ready Queue after timer interrupt
+	Resume again after other processes run for their time slice
+
+
+	Context --- SNAPSHOT of the CPU registers @ given time
+
+	Context-Saving --- when process leaves CPU 
+			context is saved in the PCB
+
+	Context-Loading --- when process RESUMES execution on CPU
+			context is loaded in  CPU 
+
+	Adv of Context 
+		--- Process can resume from the point it left
+
+
+	context-loading /saving  = CONTEXT SWITCHING
+
+
+
+
+	Adv 
+	1. Multitasking EFFECT is achieved, low response time
+	2. No starvation 
+
+
+
+
+
+	Disadv 
+	1.  Heavy context switching overhead
+	2. Tw increases , Ta increases, throughput decreases
+
+
+	Process		Tcpu        Arrivaltime   
+	 P1		2		2	     
+	 P2             3		0	  
+	 P3             4	        1	  
+
+	time slice 2 ms
+	calculate avg Tw, Ta using round robin
+
+	Tw1 = (4-2 ) = 2
+	Tw2 = (0-0) + (6-2) = 4
+	Tw3 = (2-1) + (7-4) = 1+3 = 4
+
+
+
+
+
+
+
+
+
+
+5. FAIR SHARE  --- MULTIUSER OS
+6. EDF -----RTOS 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

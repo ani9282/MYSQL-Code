@@ -1,0 +1,28 @@
+1. HDD life
+2. other types of registers 
+3. example of microkernel and monolithic kernel 
+	examples of different types of OSs
+
+4. find out examples of Maskable and non maskable interrupts
+
+5. observe the prompt
+6. ps, kill, ps -e, ps -e -o pid,ppid,cmd
+	write your own infy.c
+7. jobs , fg, bg, & , ctrl-z, ctrlc 
+
+8. read multiuser os and RTOS 
+
+9. Write a program that will fork 2 child processes
+	one child will print fibonacci series 
+	1
+	1 1
+	1 1 2
+	1 1 2 3
+
+	second child will accept a number from user and show its factorial in an infinite loop 
+
+
+
+
+
+

@@ -1,0 +1,382 @@
+
+	
+
+	IPC ---- inter process communication
+
+	inter process --- between 2 processes
+
+	intra porcess --- within a process
+
+	--- every process has exclusive address space ---
+		the process does not share the memory space
+		address space, process space, process image
+
+		with another process
+
+
+	If these processes want to communicate with each other
+		then EXTERNAL communication mechanism is reqd
+
+	Universally Socket communication is used bet processes.
+
+	We will discuss linux specific IPC techniques---
+
+	a. PIPEs
+	b. Message Queue
+	c. Shared Memory
+	d. Semaphores
+
+	a. PIPE --- Unidirectional flow of DATA
+	  pipe(file) is created on the Hard disk
+	  system call pipe( arg is array of 2 int )
+	  data is a flow of bytes ( UNSTRUCTURED  data )
+
+
+
+	b.  Message Queue ---a queue data structure is created 
+		by the kernel
+	    Message queue is kept on the RAM 
+	   System calls used are
+			msgget()
+			msgsend()
+			msgrcv()
+			msgat()
+
+	    Bidirectional flow 
+		both processes can send and rcv
+		every msg sent is added at the rear
+		every msg rcv is rea\moved from front 
+		(FIFO )
+
+	   Messages are STUCTURED data 
+		struct Message
+		{
+			int msgid
+			char [] msgdata
+		}
+
+		struct Message msg1,msg2,msg3
+
+-------------------------------
+
+c. Shared Memory Technique 
+	kernel allocates a buffer in RAM
+	and provides the shm-pointer to the buffer
+
+	system calls used
+		shmget() --- allocate the buffer
+		shmat() --- get the pointer to buffer
+
+	unstructured messages 
+	no flow as such - both processes can access any location
+	any time
+
+	PROBLEM --- Race Condition is problem of SHARED DATA .
+
+
+-------------------------------------
+
+What is the RACE Condition Problem -  data sharing problem 
+	value of shared data is inconsistent
+
+
+What is the SOlution to Race Condition -- Mutual Exclusion
+	at a time only one process can access the shared data
+		if that process takes a break STILL other 
+	process should not be allowed to use the data
+
+	Only when first process declares that it has finished using the shared data then only the second should be allowed to use the shared data
+
+
+  In your entire  code MARK the CRITICAL SECTION 
+		
+	CRITICAL SECTION -- code in the code segment
+			    that is using shared data 
+
+
+Mutual Exclusion --- at a time only one process CAN enter 
+			its critical section
+
+
+To implement mutual exclusion - special flags are used
+	these are called as Semaphores 
+
+
+Semaphores are not affected by race condition !!!
+
+What are semaphores ?
+	Semaphore is a positive int value
+	Semaphore can be accessed by only 2 atomic functions
+		wait()
+		signal()
+
+	these functions will run at a stretch completely without
+	interrupt
+
+	Our functions may be broken into parts due to many 		interrupts.
+
+	wait(sema)
+	{
+		if(sema > 0 ) sema--  return;
+		
+		else check-again  wait will not return
+	}
+
+	signal(sema)
+	{
+		sema++;
+	}
+
+
+ 2 types of Semaphores --
+	1. binary semaphore --- semaphore toggles between 0 and 1
+		this is used for mutual exclusion
+		this is also called as MUTEX
+
+	2. Counting Semaphore --- semaphore goes from 0 to n 
+				  and n to 0
+		this is used for IPC
+		Semaphore itself can be used as the shared data
+
+ Typical Example of Semaphore ----
+	Producer- consumer problem --- bounded buffer problem 
+
+    algorithm ---
+
+IPC shared data --- fullcount, emptycount --- counting semaphore
+Mutex to protect tray from simultaneous access --- binary semaphore
+
+	full=0, empty=5;
+
+	Producer()
+	{
+		while(1)
+		{	
+			produce_item()
+
+			
+			wait(empty)
+			wait(mutex)
+			add_item_to_tray()  //CS
+			signal(mutex)
+			signal(full)
+			
+			
+		}
+
+	}
+
+	Consumer()
+	{
+		while(1)
+		{
+			wait(mutex)
+			wait(full)
+			remove_item_from_tray()  //CS
+			signal(empty)
+			signal(mutex)
+
+
+			consume_item()
+			
+		}
+
+	}
+
+
+  Principles of Operating System
+	Silberschatz , Galvin
+
+
+	PROCESS SYNCHRONIZATION ====THREAD SYNCHRONIZATION
+		race condition, mutual exclusion
+		critical section, semaphores
+_________________________________________________
+
+Linux commands  --- 
+	SHELL Scripts  --- program written using shell commands
+	these scripts are interpreted!!!    NOT compiled
+
+1. write a shell script to display hello world
+2. WASS to create a variable and print its value
+3. Create variables with string value float value char value , print them
+4. accept a name from the user and print it
+5. accept 3 numbers from user and show their sum 
+6. accept a name from the user and create file of that name
+	in current folder and see contents of current folder
+7. accept a name from user and create a subdirectory of that name
+		in current folder 
+	and show the content of current folder
+
+8. write a shell script to accept a number from user and show whether it is odd or even
+
+9. write a shell script to accept a number from user and 
+	tell whether it is greater than less than or equal to 100
+
+
+You can use if then fi
+		if then else fi
+		  if then elif elif elif  fi
+
+10. write a shell script to show numbers from 1 to 100
+		do using while, for and until
+
+11. accept a number from user and show its factorial
+12. accept a number from user and show its table upto 10 
+13. accept a number from user and show whether it is prime
+
+14. accept a string from the user and print it if it is not "yes"
+15. accept a string from user and if a file of that name exists
+	print the contents of that file else print file does not 	 exist
+	if it is a directory then show contents of dir
+16. FIND out the syntax for switch case
+
+author : sumitabha das
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
